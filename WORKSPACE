@@ -49,11 +49,10 @@ http_archive(
 # Add Docker toolchains
 http_archive(
     name = "bazel_toolchains",
-    sha256 = "56e75f7c9bb074f35b71a9950917fbd036bd1433f9f5be7c04bace0e68eb804a",
-    strip_prefix = "bazel-toolchains-9bd2748ec99d72bec41c88eecc3b7bd19d91a0c7",
+    sha256 = "68e7678473090542e679ce7e6aa8a3ba5669577dede2b404f9865d556bd99f10",
+    strip_prefix = "bazel-toolchains-0.28.0",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/bazel-toolchains/archive/9bd2748ec99d72bec41c88eecc3b7bd19d91a0c7.tar.gz",
-        "https://github.com/bazelbuild/bazel-toolchains/archive/9bd2748ec99d72bec41c88eecc3b7bd19d91a0c7.tar.gz",
+        "https://github.com/bazelbuild/bazel-toolchains/archive/0.28.0.tar.gz",
     ],
 )
 
