@@ -62,16 +62,6 @@ http_archive(
     ],
 )
 
-# proto_library, cc_proto_library, and java_proto_library rules implicitly
-# depend on @com_google_protobuf for protoc and proto runtimes.
-# This statement defines the @com_google_protobuf repo.
-http_archive(
-    name = "com_google_protobuf",
-    sha256 = "f976a4cd3f1699b6d20c1e944ca1de6754777918320c719742e1674fcf247b7e",
-    strip_prefix = "protobuf-3.7.1",
-    urls = ["https://github.com/google/protobuf/archive/v3.7.1.zip"],
-)
-
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies(go_sdk = "go_sdk")
