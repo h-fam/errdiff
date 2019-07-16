@@ -101,7 +101,7 @@ load(
 go_download_sdk(
     name = "go_sdk",
     sdks = {
-        "linux_amd64": ("go1.12.6.linux-amd64.tar.gz", "66d83bfb5a9ede000e33c6579a91a29e6b101829ad41fffb5c5bb6c900e109d9"),
+        "linux_amd64": ("go1.12.7.linux-amd64.tar.gz", "66d83bfb5a9ede000e33c6579a91a29e6b101829ad41fffb5c5bb6c900e109d9"),
     },
 )
 
