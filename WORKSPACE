@@ -1,20 +1,13 @@
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-#http_archive(
-#    name = "io_bazel_rules_go",
-#    urls = [
-#        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/0.18.6/rules_go-0.18.6.tar.gz",
-#        "https://github.com/bazelbuild/rules_go/releases/download/0.18.6/rules_go-0.18.6.tar.gz",
-#    ],
-#    sha256 = "f04d2373bcaf8aa09bccb08a98a57e721306c8f6043a2a0ee610fd6853dcde3d",
-#)
-
-git_repository(
+http_archive(
     name = "io_bazel_rules_go",
-    commit = "fabf03c1cd31bcf15fb945d932cef322b242be3a",
-    remote = "https://github.com/bazelbuild/rules_go",
-    shallow_since = "1561303606 -0400",
+    urls = [
+        "https://storage.googleapis.com/bazel-mirror/github.com/bazelbuild/rules_go/releases/download/0.19.0/rules_go-0.19.0.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/0.19.0/rules_go-0.19.0.tar.gz",
+    ],
+    sha256 = "9fb16af4d4836c8222142e54c9efa0bb5fc562ffc893ce2abeac3e25daead144",
 )
 
 #http_archive(
@@ -35,10 +28,13 @@ git_repository(
 # This statement defines the @com_google_protobuf repo.
 http_archive(
     name = "com_google_protobuf",
-    sha256 = "f976a4cd3f1699b6d20c1e944ca1de6754777918320c719742e1674fcf247b7e",
-    strip_prefix = "protobuf-3.7.1",
-    urls = ["https://github.com/google/protobuf/archive/v3.7.1.zip"],
+    sha256 = "8eb5ca331ab8ca0da2baea7fc0607d86c46c80845deca57109a5d637ccb93bb4",
+    strip_prefix = "protobuf-3.9.0",
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/v3.9.0.zip"],
 )
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+protobuf_deps()
 
 # bazel-skylb 0.8.0 released 2019.03.20 (https://github.com/bazelbuild/bazel-skylib/releases/tag/0.8.0)
 skylib_version = "0.8.0"
@@ -64,21 +60,6 @@ http_archive(
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies", "go_repository")
 
 gazelle_dependencies(go_sdk = "go_sdk")
-
-# Download using "go mod download"
-go_repository(
-    name = "org_golang_google_grpc",
-    importpath = "google.golang.org/grpc",
-    sum = "h1:J0UbZOIrCAl+fpTOf8YLs4dJo8L/owV4LYVtAXQoPkw=",
-    version = "v1.22.0",
-)
-
-go_repository(
-    name = "org_golang_x_net",
-    importpath = "golang.org/x/net",
-    sum = "h1:uOCk1iQW6Vc18bnC13MfzScl+wdKBmM9Y9kU7Z83/lw=",
-    version = "v0.0.0-20190503192946-f4e77d36d62c",
-)
 
 load(
     "@io_bazel_rules_go//go:deps.bzl",
@@ -250,4 +231,18 @@ go_repository(
     importpath = "golang.org/x/tools",
     sum = "h1:5Beo0mZN8dRzgrMMkDp0jc8YXQKx9DiJ2k1dkvGsn5A=",
     version = "v0.0.0-20190524140312-2c0ae7006135",
+)
+
+go_repository(
+    name = "org_golang_google_grpc",
+    importpath = "google.golang.org/grpc",
+    sum = "h1:J0UbZOIrCAl+fpTOf8YLs4dJo8L/owV4LYVtAXQoPkw=",
+    version = "v1.22.0",
+)
+
+go_repository(
+    name = "org_golang_x_net",
+    importpath = "golang.org/x/net",
+    sum = "h1:uOCk1iQW6Vc18bnC13MfzScl+wdKBmM9Y9kU7Z83/lw=",
+    version = "v0.0.0-20190503192946-f4e77d36d62c",
 )
