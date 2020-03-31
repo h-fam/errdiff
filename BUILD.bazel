@@ -10,7 +10,7 @@ gazelle(
 go_library(
     name = "go_default_library",
     srcs = ["errdiff.go"],
-    importpath = "source.cloud.google.com/hines-alloc/brain",
+    importpath = "github.com/h-fam/errdiff",
     visibility = ["//visibility:public"],
     deps = [
         "@org_golang_google_grpc//:go_default_library",
