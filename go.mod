@@ -1,6 +1,6 @@
 module github.com/h-fam/errdiff
 
-go 1.12
+go 1.18
 
 require (
 	github.com/golang/protobuf v1.3.1 // indirect
