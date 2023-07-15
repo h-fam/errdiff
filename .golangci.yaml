@@ -1,0 +1,61 @@
+# If this config is confusing, have a look here, it is documented from A-Z https://golangci-lint.run/usage/linters
+linters-settings:
+  goconst:
+    min-len: 3 # Minimal length of string constant.
+    min-occurrences: 3 # Minimum occurrences of constant string count to trigger issue.
+    ignore-tests: true
+  gci:
+    custom-order: true
+    sections:
+      - standard # Standard section: captures all standard packages.
+      - default # Default section: contains all imports that could not be matched to another section type.
+      - prefix(github.com/mrwormhole/errdiff) # Custom section: groups all imports with the specified Prefix.
+      - blank # Blank section: contains all blank imports. This section is not present unless explicitly enabled.
+    skip-generated: false
+  nolintlint:
+    allow-unused: false # report any unused nolint directives
+    allow-leading-space: false # disable to ensure that nolint directives don't have a leading space. Default is true.)
+    require-explanation: false # don't require an explanation for nolint directives
+    require-specific: true # require nolint directives to be specific about which linter is being skipped
+
+linters:
+  disable-all: true
+  enable:
+    # common mistakes
+    - govet
+    - staticcheck
+    - gosec
+    - bodyclose
+    - exportloopref
+    - ineffassign
+    - errcheck
+    - typecheck
+    - asciicheck
+    - durationcheck
+    - nilerr
+    - nolintlint
+
+    # common styling
+    - gofmt
+    - goimports
+    - gci
+    - goconst
+    - gosimple
+    - dogsled
+    - errname
+    - forcetypeassert
+    - predeclared
+    - tenv
+    - tparallel
+    - unconvert
+    - unparam
+    - unused
+    - usestdlibvars
+    - whitespace
+    - stylecheck
+
+issues:
+  exclude-use-default: false
+
+run:
+  timeout: 10s
