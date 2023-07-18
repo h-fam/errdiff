@@ -78,7 +78,7 @@ tests := []struct {
 for _, tt := range tests {
   t.Run(tt.name, func(t *testing.T) {
     got, err := fn(...)
-    if diff := errdiff.Code(err, tt.wantErr); diff != "" {
+    if diff := errdiff.Code(err, tt.wantCode); diff != "" {
       t.Errorf("fn() %s", diff)
     }
   })
