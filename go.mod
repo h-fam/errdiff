@@ -1,4 +1,4 @@
-module github.com/h-fam/errdiff
+module github.com/mrwormhole/errdiff
 
 go 1.20
 

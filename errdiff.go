@@ -1,4 +1,4 @@
-// Package errdiff makes it easy to compare errors(by error, by string or by grpc code) in tests
+// Package errdiff makes it easy to compare errors(by error, by string or by grpc status code) in tests
 //
 // Similar in intended usage to cmp.Diff but for errors,
 // particularly in table-driven tests.
@@ -6,25 +6,28 @@
 // Example usage:
 //
 // The function Check is used mainly for the existence of an error
-// alternatively Text(exact string matches) or Code(gRPC status codes) also can be used:
+// alternatively Text(exact string matches) or Code(grpc status codes) also can be used:
 //
 //	tests := []struct {
-//		...
-//		wantErr error
+//	 ...
+//	 wantErr error
 //	}{
-//		// Success
-//		{...},
-//		// Failures
-//		{..., wantErr: errors.New("my expected error string")}, // An explicit full error(case-sensitive)
-//		{..., wantErr: io.EOF}, // A contained/wrapped error (sentimental error)
+//
+//	 // Success
+//	 {...},
+//	 // Failures
+//	 {..., wantErr: errors.New("something failed: EOF")}, // an explicit full error
+//	 {..., wantErr: io.EOF}, // a contained/wrapped error
 //	}
-//	for _, c := range testCases {
-//		got, err := fn(...)
-//		if diff := errdiff.Check(err, c.wantErr); diff != "" {
-//			t.Errorf("fn() %v", diff)
-//			continue
-//		}
-//		...
+//
+//	for _, tt := range tests {
+//	 t.Run(tt.name, func(t *testing.T) {
+//	   got, err := fn(...)
+//	   if diff := errdiff.Check(err, tt.wantErr); diff != "" {
+//	     t.Errorf("fn() %s", diff)
+//	   }
+//	 })
+//	}
 package errdiff
 
 import (
@@ -85,5 +88,5 @@ func Code(got error, want codes.Code) string {
 	if status.Code(got) == want {
 		return ""
 	}
-	return fmt.Sprintf("got err=%v, want code=%v", got, want.String())
+	return fmt.Sprintf("got err=%s, want code=%s", got.Error(), want.String())
 }

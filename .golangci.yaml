@@ -10,7 +10,6 @@ linters-settings:
       - standard # Standard section: captures all standard packages.
       - default # Default section: contains all imports that could not be matched to another section type.
       - prefix(github.com/mrwormhole/errdiff) # Custom section: groups all imports with the specified Prefix.
-      - blank # Blank section: contains all blank imports. This section is not present unless explicitly enabled.
     skip-generated: false
   nolintlint:
     allow-unused: false # report any unused nolint directives
@@ -30,7 +29,6 @@ linters:
     - ineffassign
     - errcheck
     - typecheck
-    - asciicheck
     - durationcheck
     - nilerr
     - nolintlint
@@ -46,7 +44,6 @@ linters:
     - forcetypeassert
     - predeclared
     - tenv
-    - tparallel
     - unconvert
     - unparam
     - unused
@@ -58,4 +55,5 @@ issues:
   exclude-use-default: false
 
 run:
-  timeout: 10s
+  tests: true
+  timeout: 30s
