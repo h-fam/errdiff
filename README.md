@@ -7,8 +7,8 @@
 [![License](https://img.shields.io/github/license/mrwormhole/errdiff)](https://github.com/mrwormhole/errdiff/blob/master/LICENSE)
 
 This is a fork of h-fam/errdiff, this is created in order to achieve type-safety and better Check() method that can understand wrapped/contained errors.
-In the process of doing so, I have removed Substring() method due to issues that cause and interface{} argument that is passed to Check() method. 
-Also cleaned up deprecated grpc status code things.
+In the process of doing so, I have removed interface{} argument that is passed to Check() method. 
+Also cleaned up deprecated grpc status code pkgs.
 
 # Usage
 

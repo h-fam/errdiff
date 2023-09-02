@@ -101,10 +101,9 @@ func TestText(t *testing.T) {
 			name: "empty error",
 		},
 		{
-			name:       "match",
-			got:        errors.New("abc"),
-			want:       "abc",
-			wantResult: "",
+			name: "match",
+			got:  errors.New("abc"),
+			want: "abc",
 		},
 		{
 			name:       "message no match",
@@ -131,6 +130,52 @@ func TestText(t *testing.T) {
 	}
 }
 
+func TestSubstring(t *testing.T) {
+	tests := []struct {
+		name       string
+		got        error
+		want       string
+		wantResult string
+	}{
+		{
+			name: "empty",
+		},
+		{
+			name: "subsring match",
+			got:  errors.New("abc"),
+			want: "bc",
+		},
+		{
+			name: "exact match",
+			got:  errors.New("abc"),
+			want: "abc",
+		},
+		{
+			name:       "message no match",
+			got:        errors.New("ab"),
+			want:       "abc",
+			wantResult: "got err=ab, want err=abc",
+		},
+		{
+			name:       "want nil",
+			got:        errors.New("ab"),
+			wantResult: "got err=ab, want err=nil",
+		},
+		{
+			name:       "want nil got message",
+			got:        errors.New(""),
+			wantResult: "got err=, want err=nil",
+		},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if gotResult := Substring(tt.got, tt.want); gotResult != tt.wantResult {
+				t.Errorf("Substring(%v, %v): gotResult=%q wantResult=%q", tt.got, tt.want, gotResult, tt.wantResult)
+			}
+		})
+	}
+}
+
 func TestCode(t *testing.T) {
 	tests := []struct {
 		name       string
@@ -142,10 +187,9 @@ func TestCode(t *testing.T) {
 			name: "empty message",
 		},
 		{
-			name:       "Unimplemented match",
-			got:        status.Errorf(codes.Unimplemented, ""),
-			want:       codes.Unimplemented,
-			wantResult: "",
+			name: "Unimplemented match",
+			got:  status.Errorf(codes.Unimplemented, ""),
+			want: codes.Unimplemented,
 		},
 		{
 			name:       "code no match",
