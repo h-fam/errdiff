@@ -5,6 +5,7 @@
 [![GoDoc](https://godoc.org/github.com/mrwormhole/errdiff?status.svg)](https://godoc.org/github.com/mrwormhole/errdiff)
 [![Report Card](https://goreportcard.com/badge/github.com/mrwormhole/errdiff)](https://goreportcard.com/report/github.com/mrwormhole/errdiff)
 [![License](https://img.shields.io/github/license/mrwormhole/errdiff)](https://github.com/mrwormhole/errdiff/blob/master/LICENSE)
+[![Coverage Status](https://coveralls.io/repos/github/mrwormhole/errdiff/badge.svg?branch=master)](https://coveralls.io/github/mrwormhole/errdiff?branch=master)
 
 This is a fork of h-fam/errdiff, this is created in order to achieve type-safety and better Check() method that can understand wrapped/contained errors.
 In the process of doing so, I have removed interface{} argument that is passed to Check() method. 
