@@ -5,8 +5,7 @@
 //
 // Example usage:
 //
-// The function Check is used mainly for the existence of an error
-// alternatively Text(exact string matches) or Code(grpc status codes) also can be used:
+// The function Check is used mainly for the existence of an error, alternatively Text(exact string matches) or Code(grpc status codes) also can be used:
 //
 //	tests := []struct {
 //	 ...
@@ -33,7 +32,6 @@ package errdiff
 import (
 	"errors"
 	"fmt"
-	"strings"
 
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -69,23 +67,6 @@ func Text(got error, want string) string {
 		return fmt.Sprintf("got err=nil, want err=%s", want)
 	}
 	if got.Error() == want {
-		return ""
-	}
-	return fmt.Sprintf("got err=%s, want err=%s", got.Error(), want)
-}
-
-// Substring performs substring match with want string on got error string.
-func Substring(got error, want string) string {
-	if want == "" && got == nil {
-		return ""
-	}
-	if want == "" && got != nil {
-		return fmt.Sprintf("got err=%s, want err=nil", got.Error())
-	}
-	if want != "" && got == nil {
-		return fmt.Sprintf("got err=nil, want err=%s", want)
-	}
-	if strings.Contains(got.Error(), want) {
 		return ""
 	}
 	return fmt.Sprintf("got err=%s, want err=%s", got.Error(), want)
